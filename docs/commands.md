@@ -18,3 +18,36 @@
 ## 终端
 - `cls`：清屏（不会删任何记录）
 - ↑ 方向键：翻出之前输入的命令
+
+## 网络不稳定时的 push 备选方案
+
+```
+# 设置代理(端口按自己代理软件为准,这里是 7890)
+git config --global http.proxy http://127.0.0.1:7890
+git config --global https.proxy http://127.0.0.1:7890
+
+# 查看当前代理设置
+git config --global --get http.proxy
+
+# 撤销代理
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
+```
+- 代理软件必须正在运行,否则会报 `Failed to connect to 127.0.0.1 port 7890`
+- 确认 push 是否成功:`git status` 显示 `up to date with 'origin/main'`
+
+## 运行与查看
+
+```
+python blur_detect.py     # 运行脚本（先 conda activate photo-agent）
+dir photos                # 查看 photos 文件夹里的真实文件名
+```
+
+## 模糊检测核心流程（OpenCV）
+
+1. `cv2.imread(path)` 读图，读失败返回 None
+2. `cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)` 转灰度（边缘检测关心亮度，不关心颜色）
+3. `cv2.resize(gray, (宽, 高))` 统一尺寸
+4. `cv2.Laplacian(gray, cv2.CV_64F).var()` 拉普拉斯方差
+5. 分数越低越模糊

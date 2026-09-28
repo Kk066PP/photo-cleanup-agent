@@ -9,6 +9,8 @@
 - 建 conda 环境 `photo-agent`，装好 OpenCV / Pillow / numpy
 - 用 test_env.py 验证 VS Code 解释器正确
 - 学会 Git 三步（add / commit / push），并亲手验证了 add 和 commit 的区别
+- 2026-09-28:解决 git push 失败问题(设置本地代理后成功),ae27296 已推送到 GitHub
+- 2026-09-28（续）：写出第一版 `blur_detect.py`（单张图），跑通读图、灰度、缩放、拉普拉斯方差；发现分辨率会影响分数，加入统一缩放
 
 **下一步**
 - 在 `photos/` 放 10 到 20 张照片
