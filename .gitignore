@@ -1,0 +1,15 @@
+# 照片数据集
+photos/
+data/
+*.jpg
+*.jpeg
+*.png
+*.heic
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# 编辑器
+.vscode/
