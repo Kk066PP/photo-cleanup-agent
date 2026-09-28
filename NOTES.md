@@ -8,14 +8,23 @@
 - 确定方向和项目，建好 GitHub 仓库 `photo-cleanup-agent`
 - 把手机照片导出到电脑
 - 验证 Git：`git --version` → 2.52.0；`git config --global user.name` / `user.email` 都已配置
-- 在桌面新建 `photo-cleanup-agent` 文件夹，用 VS Code 打开
-- 了解了 conda：终端里的 `(base)` 是默认环境，不要直接往里装包，项目要新建独立环境
+- 克隆仓库到本地：`git clone https://github.com/Kk066PP/photo-cleanup-agent.git .`
+- 建 `.gitignore`（忽略 photos/、data/、图片格式、.venv/ 等），用 `git status` 验证规则生效
+- 完成第一次提交并推送到 GitHub
+- 了解了 conda：`(base)` 是默认环境，不要直接往里装包，项目要新建独立环境
+
+**学到的概念**
+- Git 三步：`git add`（放进暂存区）→ `git commit`（本地存一个版本）→ `git push`（上传到 GitHub）
+- 只有 `push` 会联网，`add` 和 `commit` 断网也能做
+- 辅助命令：`git status`（看状态）、`git log --oneline`（看提交历史）
 
 **待做**
-- 克隆仓库到本地
-- 建 `.gitignore`（照片不上传）
-- 建 conda 环境，装 opencv-python、Pillow、numpy
-- 写第一个工具：模糊检测
+- 建 conda 环境 `photo-agent`（Python 3.11），装 opencv-python、Pillow、numpy
+- VS Code 选择解释器（Python: Select Interpreter）
+- 写第一个工具：模糊检测，跑通 300 张照片
 
 **遇到的问题**
-- （暂无，遇到了就记在这里）
+- `git clone ... .` 报 `fatal: destination path '.' already exists and is not an empty directory`
+  原因：目标文件夹里已有 NOTES.md。解决：先把文件移出去，克隆后再放回来。
+- `git push` 报 `Failed to connect to github.com port 443`
+  原因：网络瞬时超时。解决：重试一次就成功了。commit 是本地操作，push 失败不会丢代码。
