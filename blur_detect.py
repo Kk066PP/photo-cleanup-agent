@@ -1,6 +1,6 @@
 import cv2
 
-path = "photos/MVIMG_20260928_213639_1.jpg"   # 换成你要测的图
+path = "photos/MVIMG_20260929_111406.jpg"   # 换成你要测的图
 
 # 读图
 img = cv2.imread(path)
@@ -20,5 +20,8 @@ gray = cv2.resize(gray, (int(w * scale), int(h * scale)))
 print("缩放后形状：", gray.shape)
 
 # 拉普拉斯方差
+""" lap = cv2.Laplacian(gray, cv2.CV_64F)
+print(lap.shape)
+print(lap) """
 score = cv2.Laplacian(gray, cv2.CV_64F).var()
 print("清晰度分数：", score)
