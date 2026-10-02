@@ -23,13 +23,15 @@ for filename in os.listdir(folder):
     h, w = gray.shape
     scale = 1000 / max(h, w)
     gray = cv2.resize(gray, (int(w * scale), int(h * scale)))
+    denoised = cv2.GaussianBlur(gray, (3, 3), 0)   # 新增降噪
     #print("缩放后形状：", gray.shape)
 
     # 拉普拉斯方差
     """ lap = cv2.Laplacian(gray, cv2.CV_64F)
     print(lap.shape)
     print(lap) """
-    score = cv2.Laplacian(gray, cv2.CV_64F).var()
+
+    score = cv2.Laplacian(denoised, cv2.CV_64F).var()
     results.append((filename, score))   # 新增：存进列表，不立刻打印
 
 # 循环结束后，按分数从低到高排序
@@ -37,4 +39,4 @@ results.sort(key=lambda x: x[1])
 
 # 统一打印排序后的结果
 for filename, score in results:
-    print(filename, round(score, 1))
+    print(f"{filename:<32}{score:>9.1f}")

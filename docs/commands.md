@@ -52,3 +52,8 @@ dir photos                # 查看 photos 文件夹里的真实文件名
 3. `cv2.resize(gray, (宽, 高))` 统一尺寸
 4. `cv2.Laplacian(gray, cv2.CV_64F).var()` 拉普拉斯方差
 5. 分数越低越模糊
+
+## 保存脚本输出到文件
+python blur_detect.py > docs/blur_after_denoise_5x5.txt   # 覆盖
+python blur_detect.py >> docs/xxx.txt                     # 追加
+# 文件名带参数标签，改参数前先确认标签和代码一致
